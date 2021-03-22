@@ -12,10 +12,4 @@ Through this project, we hope to become more comfortable programming in C. We wo
 A major starting resource is online research into existing data management applications. This will give us information on which data structures would be useful for our application and how to implement them in C. We would also like to consult the teaching team on where would be a good place to begin tackling our project.
 
 ### Currently working on <br>
-
-*What are you working on now?  Describe at least three concrete tasks that you are working on, and identify which members of the team are working on them.  For each one, what is the "definition of done"; that is, what will you produce to demonstrate that the task is done?*
-
-### First Steps <br>
-* Document to story board / plan for features of the application
-* Do research on data structures that we may use
-* Look into which libraries we may need to include
+We're currently working on making sure that user input is stored and is able to be used to manipulate values from within the csv and txt files. Our MVP is a product that allows us to track changing values for at least 2 people and output a bill for each person. To deepen our project, we can work on expanding the application to include more individuals. Walter is working on using pointers to be able to get information around in functions. He is also trying to lay out how information can be retrieved once the user has inputted one round of information. Melody is thinking about how data can be stored in a csv and is working on functions for csv creation and manipulation. This is done when the function can interface with Walter's work to take in user-input and update the csv.
