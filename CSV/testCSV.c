@@ -57,8 +57,8 @@ void change_point_in_csv(char *file, int c, int r, int change) {
 }
 
 void print_csv(char *file_path) {
-    FILE* fp = fopen(file_path, "r");
-    if (!fp) printf("Can't open file (print_func)\n"); 
+    FILE* file = fopen(file_path, "w+");
+    if (!file) printf("Can't open file (print_func)\n"); 
     else {
         char buffer[1024];
         while (fgets(buffer, 1024, fp)) {
@@ -79,6 +79,9 @@ void print_csv(char *file_path) {
         - add new person to CSV
         - log an expense
         - log a settlement
+        - output personal bill
+        - view exchanges for input person
+
  */
 int main() {
  
@@ -90,8 +93,6 @@ int main() {
     fgets(str, 500, stdin);
     create_csv(str, a, names, 3, 3);
     // print_csv(str);
-
-
     // change_point_in_csv(str, 1, 1, 2);
 
     return 0;
