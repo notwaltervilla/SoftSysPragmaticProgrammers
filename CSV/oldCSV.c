@@ -18,6 +18,23 @@ void create_csv(char *filename, int a[][4], char names[][10], int num_of_users) 
     fclose(file);
 }
 
+void print_csv(char *file_path) {
+    FILE* file = fopen(file_path, "w+");
+    if (!file) printf("Can't open file (print_func)\n"); 
+    else {
+        char buffer[1024];
+        while (fgets(buffer, 1024, file)) {
+            char* value = strtok(buffer, " ");
+            while (value) {
+                printf("%s ", value);
+                value = strtok(NULL, " ");
+            }
+        }
+        printf("\n");
+        fclose(file);
+    }
+}
+
 // for now, check if can locate target spot
 void locate_point_in_csv(char *file, int c, int r) {
     FILE* fp = fopen(file, "r");
