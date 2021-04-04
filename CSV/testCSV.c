@@ -2,24 +2,10 @@
 #include <stdlib.h>
 #include<string.h>
 
-// create CSV file of given array values
-void create_csv(char *filename, int a[][4], char names[][10], int num_of_users) {
-    FILE *file;
-    // filename=strcat(filename,".csv");
-    file = fopen(filename,"w+");
-    fprintf(file,"Name Walter Melody Simrun Patrick");
-    
-    for(int i = 0; i < num_of_users; i++){
-        fprintf(file, "\n%s", names[i+1]);
-        for(int j = 0; j < num_of_users; j++) {
-            fprintf(file," %d", a[i][j]);
-        }
-    }
-    fclose(file);
-}
 
 // initialize CSV files with values 0
 void new_csv(char *filename, char* names[], int num_of_users) {
+// void new_csv(char *filename, char names[][10], int num_of_users) {
     FILE *file;
     // filename=strcat(filename,".csv");
     file = fopen(filename,"w+");
@@ -70,9 +56,9 @@ void change_point_in_csv(char *file, int c, int r, int change) {
         }
         fclose(fp);
         fclose(new_fp);
-        // rename updated file to original name, delete old file
+        // implementation-defined?
+        // https://stackoverflow.com/questions/41926099/does-the-c-rename-function-delete-files
         rename(new_file, file);
-        remove(file);
     }
 }
 
@@ -95,63 +81,91 @@ void print_csv(char *file_path) {
 
 /*  TODO:
     Functions to
-        - create new CSV, input names
-        - add new person to CSV
-        - log an expense
-        - log a settlement
-        - output personal bill
-        - view exchanges for input person
+        DONE create new CSV, input names
+        -    add new person to CSV
+        -    log an expense
+        -    log a settlement
+        -    output personal bill
+        -    view exchanges for input person
 
  */
-// int main() {
- 
-//     int a[4][4]={{1,2,3,3},{4,5,6,6},{7,8,9,9},{7,8,9,9}};
-//     // int a[3][3] = {0};
-//     char names[][10] = {"Name", "Walter", "Melody", "Simrun", "Patrick"};
-//     char names_arr[][10] = {"Walter", "Melody", "Simrun", "Patrick"};
-//     char file_str[100];
-    
-//     printf("Enter the filename: ");
-//     fgets(file_str, 500, stdin);
-//     // create_csv(file_str, a, names, 4);
-//     new_csv(file_str, names_arr, 4);
-//     // print_csv(file_str);
-//     // change_point_in_csv(file_str, 1, 1, 2);
-
-//     return 0;
-// }
-
-int main() {
+void create_csv_action() {
 
     char file_str[100];
     char name_str[500];
-    char n_of_users[2];
+    char n_of_users[3];
     int num_of_users;
 
     printf("Enter filename: ");
     fgets(file_str, 100, stdin);
 
     printf("Enter number of users: ");
-    fgets(n_of_users, 2, stdin);
+    fgets(n_of_users, 3, stdin);
     num_of_users = atoi(n_of_users);
-    
+
     char* names_arr[num_of_users];
     printf("Enter user names: ");
     fgets(name_str, 500, stdin);
+    char* name = strtok(name_str, " \n");
+    int name_i = 0;
+    while (name) {
+        names_arr[name_i] = name;
+        name = strtok(NULL, " \n");
+        name_i++;
+    }
 
-    // char* names_arr[num_of_users];
-    // char* name = strtok(name_str, " ");
-    // int name_i = 0;
-    // while (name) {
-    //     names_arr[name_i] = name;
-    //     name = strtok(NULL, " ");
-    //     name_i++;
-    // }
+    new_csv(file_str, names_arr, num_of_users);
 
-    new_csv(file_str, names_arr, 4);
-    // print_csv(file_str);
-    // change_point_in_csv(file_str, 1, 1, 2);
+}
 
-    return 0;
- 
+void change_point_in_csv_action() {
+
+    char file_str[100];
+    char first[3];
+    char second[3];
+    char change[3];
+    int one, two, ch;
+
+    printf("Enter filename: ");
+    fgets(file_str, 100, stdin);
+
+    printf("Enter first value: ");
+    fgets(first, 3, stdin);
+    one = atoi(first);
+
+    printf("Enter second value: ");
+    fgets(second, 3, stdin);
+    two = atoi(second);
+
+    printf("Enter change value: ");
+    fgets(change, 3, stdin);
+    ch = atoi(change);
+
+    printf("1: %d\n", one);
+    printf("2: %d\n", two);
+    printf("change: %d\n", ch);
+
+    change_point_in_csv(file_str, one, two, ch);
+}
+
+int main() {
+
+    char action[3];
+
+    printf("What would you like to do? (Input Number)\n");
+    fgets(action, 3, stdin);
+    int action_num = atoi(action);
+    switch(action_num) {
+        case 0:
+            create_csv_action();
+            break;
+
+        case 1:
+            change_point_in_csv_action();
+            break;
+
+        /* you can have any number of case statements */
+        default : /* Optional */
+            printf("default");
+    }
 }
