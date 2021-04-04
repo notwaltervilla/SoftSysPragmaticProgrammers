@@ -8,7 +8,7 @@
 
 
 // initialize CSV file with values 0, generate bill txt files
-void new_group(char* filename, char* names[], int num_of_users) {
+void new_group_action(char* filename, char* names[], int num_of_users) {
 
     FILE *csv_file;
     FILE *bill_file;
@@ -60,7 +60,7 @@ int user_to_index(char* filename, char *user) {
 }
 
 // Given row, col index, increment the value at that location by 'change'
-void change_point_in_csv(char *file, int c, int r, int change) {
+void change_point_in_csv_action(char *file, int c, int r, int change) {
 
     FILE* fp = fopen(file, "r");
     if (!fp) printf("Can't open file (loc_func)\n"); 
@@ -97,7 +97,7 @@ void change_point_in_csv(char *file, int c, int r, int change) {
     }
 }
 
-void create_group_action() {
+void create_group_input() {
 
     char file_str[FILENAME_MAX];
     char name_str[MAXLINE];
@@ -122,11 +122,11 @@ void create_group_action() {
         name_i++;
     }
 
-    new_group(file_str, names_arr, num_of_users);
+    new_group_action(file_str, names_arr, num_of_users);
 
 }
 
-void change_point_in_csv_action() {
+void change_point_in_csv_input() {
 
     char file_str[FILENAME_MAX];
     char user1[USERNAME_MAX], user2[USERNAME_MAX];
@@ -158,7 +158,7 @@ void change_point_in_csv_action() {
     // printf("2: %d\n", two);
     // printf("change: %d\n", ch);
 
-    change_point_in_csv(file_str, one, two, ch);
+    change_point_in_csv_action(file_str, one, two, ch);
     // update_bills(user1, user2, message);
 }
 
@@ -191,11 +191,11 @@ int main() {
     int action_num = atoi(action);
     switch(action_num) {
         case 0:
-            create_group_action();
+            create_group_input();
             break;
 
         case 1:
-            change_point_in_csv_action();
+            change_point_in_csv_input();
             break;
 
         /* you can have any number of case statements */
