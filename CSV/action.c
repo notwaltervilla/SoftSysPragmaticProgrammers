@@ -1,8 +1,8 @@
-#include "action.h"
+#include "main.h"
 
 #define MAXLINE 200
 
-int user_to_index(char* filename, char *user) {
+int user_to_index(char* filename, char* user) {
 
     FILE *file;
     char line[MAXLINE + 6];
@@ -55,7 +55,7 @@ void new_group_action(char* filename, char* names[], int num_of_users) {
 }
 
 // Given row, col index, increment the value at that location by 'change'
-void change_point_in_csv_action(char *file, int c, int r, int change) {
+void change_point_in_csv_action(char* file, int c, int r, int change) {
 
     FILE* fp = fopen(file, "r");
     if (!fp) printf("Can't open file (loc_func)\n"); 
@@ -90,4 +90,25 @@ void change_point_in_csv_action(char *file, int c, int r, int change) {
         // https://stackoverflow.com/questions/41926099/does-the-c-rename-function-delete-files
         rename(new_file, file);
     }
+}
+
+void update_bills(char* user1, char* user2, int payment, char* message) {
+
+    FILE *file;
+
+    file = fopen(user1, "a");
+    if(file == NULL) {
+        perror("Error opening user1 file");
+    }
+    fprintf(file, "You paid %s $%d\n", user2, payment);
+    fprintf(file, "%s", message);
+    fclose(file);
+
+    file = fopen(user2, "a");
+    if(file == NULL) {
+        perror("Error opening user2 file");
+    }
+    fprintf(file, "%s paid you $%d\n", user1, payment);
+    fprintf(file, "%s", message);
+    fclose(file);
 }

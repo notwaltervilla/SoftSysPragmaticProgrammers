@@ -1,12 +1,10 @@
-#include <stdlib.h>
-#include "action.h"
+#include "main.h"
 
 /*  TODO:
     Functions to
         DONE create new group, input names
         -    add new user
         DONE log an expense / settlement
-        -    output personal bill
         -    view exchanges for input person
 
  */
@@ -26,14 +24,13 @@ int main() {
     int action_num = atoi(action);
     switch(action_num) {
         case 0:
-            create_group_input();
+            new_group_input();
             break;
 
         case 1:
-            change_point_in_csv_input();
+            log_input();
             break;
 
-        /* you can have any number of case statements */
         default : /* Optional */
             printf("default");
     }

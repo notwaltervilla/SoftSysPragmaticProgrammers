@@ -1,6 +1,6 @@
-#include "input.h"
+#include "main.h"
 
-void create_group_input() {
+void new_group_input() {
 
     char file_str[FILENAME_MAX];
     char name_str[MAXLINE];
@@ -23,13 +23,18 @@ void create_group_input() {
         names_arr[name_i] = name;
         name = strtok(NULL, " \n");
         name_i++;
+        // printf("name_i: %d", name_i);
+        // printf("name: %s", name);
+        if (name==NULL && name_i < num_of_users) {
+            puts("Number of user names given doesn't match number of users");
+            exit(EXIT_FAILURE);
+        }
     }
 
     new_group_action(file_str, names_arr, num_of_users);
-
 }
 
-void change_point_in_csv_input() {
+void log_input() {
 
     char file_str[FILENAME_MAX];
     char user1[USERNAME_MAX], user2[USERNAME_MAX];
@@ -62,5 +67,5 @@ void change_point_in_csv_input() {
     // printf("change: %d\n", ch);
 
     change_point_in_csv_action(file_str, one, two, ch);
-    // update_bills(user1, user2, message);
+    update_bills(user1, user2, ch, message);
 }

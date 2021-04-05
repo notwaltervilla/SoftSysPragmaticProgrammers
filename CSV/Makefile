@@ -1,6 +1,6 @@
-input.o: input.c input.h
+input.o: input.c main.h
 	gcc -c input.c
-action.o: action.c action.h input.o
+action.o: action.c main.h
 	gcc -c action.c
 main.o: main.c action.o input.o
 	gcc -c main.c 

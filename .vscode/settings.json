@@ -4,6 +4,8 @@
         "typeinfo": "c",
         "stdio.h": "c",
         "stdlib.h": "c",
-        "action.h": "c"
+        "action.h": "c",
+        "input.h": "c",
+        "main.h": "c"
     }
 }
