@@ -55,6 +55,7 @@ void log_input() {
     user2[strcspn(user2, "\n")] = 0;
     two = user_to_index(file_str, user2);
 
+
     puts("Enter change value: ");
     fgets(change, 5, stdin);
     ch = atoi(change);
@@ -68,4 +69,14 @@ void log_input() {
 
     change_point_in_csv_action(file_str, one, two, ch);
     update_bills(user1, user2, ch, message);
+}
+
+void add_user_input() {
+    char addedUser[USERNAME_MAX];
+    
+    puts("Enter user: ");
+    fgets(addedUser, USERNAME_MAX, stdin);
+    
+    add_user(addedUser);
+
 }

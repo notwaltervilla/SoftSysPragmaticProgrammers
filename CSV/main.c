@@ -8,8 +8,11 @@
         -    view exchanges for input person
 
  */
-int main() {
 
+
+
+/* Main menu tool in order to reuse for other parts of our tracker*/
+void mainMenu() {
     char action[3];
 
     puts("0: Set up new group");
@@ -31,7 +34,18 @@ int main() {
             log_input();
             break;
 
+        case 2: 
+            add_user_input();
+            break;
+
         default : /* Optional */
             printf("default");
     }
 }
+
+int main() {
+    
+    mainMenu();
+
+}
+    
